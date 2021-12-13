@@ -1,11 +1,9 @@
 import random
 
-long = random.randint(1,5)
-wide = random.randint(1,5)
-
 class Square():
     def __init__(self):
-        global long,wide
+        long = random.randint(1,5)
+        wide = random.randint(1,5)
         self.square = long * wide
     def check_area(self,player_area):
         if  player_area == self.square :
