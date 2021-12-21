@@ -1,14 +1,19 @@
 import random
 
-# class Game:
-#     def __init__(self):
-
+class Game:
+    def __init__(self,player1,player2):
+        self.player1 = player1
+        self.player2 = player2
+    
+        
 class Card:
     def __init__(self,suit,value):
         self.suit = suit
         self.value = value
-    def showC(self):
-        print(self.suit,self.value)
+    def showS(self):
+        return self.suit
+    def showV(self):
+        return self.value
 class Deck:
     def __init__(self):
         self.symbol = ['♠','♥','♦','♣']
@@ -26,19 +31,25 @@ class Deck:
         for S in self.cardsID:
             S.showC()
         print(len(self.cardsID))
-# class Game:
-#     def __init__(self,player1,player2):
-
 class Player:
     def __init__(self,card):
         self.cardsIH = card
     def checkCIH(self):
-        print(self.cardsIH)
+        for i in self.cardsIH:
+            i.showC()
     def drawcard(self,drawcard):
         self.cardsIH.append(drawcard)
+    def cardsInHand(self):
+        return self.cardsIH
 deck = Deck()
-player = Player(deck.firstturn())
-player.checkCIH()
+player1 = Player(deck.firstturn())
+player2 = Player(deck.firstturn())
+game = Game(player1.cardsInHand(),player2.cardsInHand())
+player1.checkCIH()
+player2.checkCIH()
+game.dual()
+
+
 #deck.show()
-player.drawcard(deck.drawcard())
-player.checkCIH()
+#player.drawcard(deck.drawcard())
+#player.checkCIH()
