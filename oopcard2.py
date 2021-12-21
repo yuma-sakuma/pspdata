@@ -2,7 +2,7 @@ import random
 
 # class Game:
 #     def __init__(self):
-    
+
 class Card:
     def __init__(self,suit,value):
         self.suit = suit
@@ -26,12 +26,19 @@ class Deck:
         for S in self.cardsID:
             S.showC()
         print(len(self.cardsID))
+# class Game:
+#     def __init__(self,player1,player2):
+
 class Player:
     def __init__(self,card):
         self.cardsIH = card
     def checkCIH(self):
         print(self.cardsIH)
+    def drawcard(self,drawcard):
+        self.cardsIH.append(drawcard)
 deck = Deck()
 player = Player(deck.firstturn())
 player.checkCIH()
 #deck.show()
+player.drawcard(deck.drawcard())
+player.checkCIH()
