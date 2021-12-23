@@ -1,11 +1,41 @@
 import random
-
 class Game:
     def __init__(self,player1,player2):
         self.player1 = player1
         self.player2 = player2
-    
-        
+        self.valueP1 = 0
+        self.valueP2 = 0
+        self.powerP1 = 0
+        self.powerP2 = 0
+        if len(self.player1) == 3:
+            if self.player1[0].suit == self.player1[1].suit == self.player1[2].suit:
+                self.power += 2
+            elif self.player1[0].suit == self.player1[1].suit or self.player1[1].suit == self.player1[2].suit or self.player1[1].suit == self.player1[2].suit:
+                self.power += 1
+        if len(self.player2) == 3:
+            if self.player2[0].suit == self.player2[1].suit == self.player2[2].suit:
+                self.power += 2
+            elif self.player2[0].suit == self.player2[1].suit or self.player2[1].suit == self.player2[2].suit or self.player2[1].suit == self.player2[2].suit:
+                self.power += 1
+        for i in self.player1:
+            if i.value == "K" or i.value == "Q" or i.value == "J":
+                self.valueP1 += 0
+            else:
+                self.valueP1 += i.value
+        for j in self.player2:
+            if j.value == "K" or j.value == "Q" or j.value == "J":
+                self.valueP2 += 0
+            else:
+                self.valueP2 += j.value
+        while self.valueP1 >= 10:
+            self.valueP1 -= 10
+        while self.valueP2 >= 10:
+            self.valueP2 -= 10
+    def dual(self):
+        if self.valueP1 > self.valueP2:
+            print("Player 1 Win :",self.player1)
+        elif self.valueP2 > self.valueP1:
+            print("Player 2 win : {}{} and {}{}".format(self.player2[0].value,self.player2[0].suit,self.player2[1].value,self.player2[1].suit))
 class Card:
     def __init__(self,suit,value):
         self.suit = suit
@@ -29,27 +59,29 @@ class Deck:
         return random.sample(self.cardsID,2)
     def show(self):
         for S in self.cardsID:
-            S.showC()
+            S.showS()
+            S.showV()
         print(len(self.cardsID))
 class Player:
-    def __init__(self,card):
+    def __init__(self,name,card):
+        self.player_name = name
         self.cardsIH = card
     def checkCIH(self):
         for i in self.cardsIH:
-            i.showC()
+            i.showS()
+            i.showV()
     def drawcard(self,drawcard):
         self.cardsIH.append(drawcard)
     def cardsInHand(self):
         return self.cardsIH
 deck = Deck()
-player1 = Player(deck.firstturn())
-player2 = Player(deck.firstturn())
+player1 = Player("Char",deck.firstturn())
+player2 = Player("Pukkerr",deck.firstturn())
 game = Game(player1.cardsInHand(),player2.cardsInHand())
-player1.checkCIH()
-player2.checkCIH()
-game.dual()
-
-
+#player1.checkCIH()
+#player2.checkCIH()
+#game.test()
 #deck.show()
 #player.drawcard(deck.drawcard())
 #player.checkCIH()
+game.dual()
