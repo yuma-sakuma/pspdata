@@ -84,28 +84,32 @@ class Player:
         for i in self.cardsIH:
             i.showS()
             i.showV()
-    def drawcard(self,drawcard):
+    def drawcards(self,drawcard):
         self.cardsIH.append(drawcard)
     def cardsInHand(self):
         return self.cardsIH
+    def show2card(self):
+        return str(self.cardsIH[0].value)+self.cardsIH[0].suit,str(self.cardsIH[1].value)+self.cardsIH[1].suit
+    def show3card(self):
+        return str(self.cardsIH[0].value)+self.cardsIH[0].suit,str(self.cardsIH[1].value)+self.cardsIH[1].suit,str(self.cardsIH[2].value)+self.cardsIH[2].suit     
 deck = Deck()
 p1 = input("Enter name Player 1 : ")
 p2 = input("Enter name Player 2 : ")
 player1 = Player(p1,deck.firstturn())
 player2 = Player(p2,deck.firstturn())
-print("{} card : {}".format(player1.player_name,player1.cardsIH))
+print("{} card : {}".format(player1.player_name,player1.show2card()))
 drawcardP1 = input("Do you want to draw card? : ")
 if drawcardP1 == "Yes":
-    player1.drawcard()
-    print("Player1 has draw {}".format(player1.cardsIH))
+    player1.drawcards(deck.drawcard())
+    print("Player1 has draw {}".format(player1.show3card()))
     print("Turn player 2")
 else:
     print("Turn player 2")
-print("{} card : {}".format(player2.player_name,player2.cardsIH))
+print("{} card : {}".format(player2.player_name,player2.show2card()))
 drawcardP2 = input("Do you want to draw card? : ")
 if drawcardP2 == "Yes":
-    player2.drawcard()
-    print("Player2 has draw {}".format(player1.cardsIH))
+    player2.drawcards(deck.drawcard())
+    print("Player2 has draw {}".format(player2.show3card()))
     print("Dual!!!")
 else:
     print("Dual!!!")
