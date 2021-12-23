@@ -7,6 +7,7 @@ class Game:
         self.valueP2 = 0
         self.powerP1 = 0
         self.powerP2 = 0
+    def check_deng_value(self):
         if len(self.player1) == 3:
             if self.player1[0].suit == self.player1[1].suit == self.player1[2].suit:
                 self.powerP1 += 2
@@ -118,4 +119,5 @@ if drawcardP2 == "Yes":
 else:
     print("Dual!!!")
 game = Game(player1.cardsInHand(),player2.cardsInHand())
+game.check_deng_value()
 game.dual()
