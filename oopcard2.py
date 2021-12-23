@@ -48,7 +48,11 @@ class Game:
                 print("Player 1 win : {}{} , {}{} , {}{}".format(self.player1[0].value,self.player1[0].suit,self.player1[1].value,self.player1[1].suit,self.player1[2].suit,self.player1[2].value))
             else:
                 print("Player 2 win : {}{} , {}{}".format(self.player2[0].value,self.player2[0].suit,self.player2[1].value,self.player2[1].suit))
-        elif self.valueP1 == self.valueP2:
+        elif self.valueP1 == self.valueP2 and self.powerP1 > self.powerP2:
+            print("Player 1 win")
+        elif self.valueP1 == self.valueP2 and self.powerP1 < self.powerP2:
+            print("Player 2 win")
+        else:
             print("Draw")
 class Card:
     def __init__(self,suit,value):
